@@ -35,6 +35,9 @@ namespace Cielo.Request.Element
 
 			Console.Write (response);
 
+            if (transaction == null)
+                transaction = new Transaction();
+
 			transaction.tid = transacao.tid;
 			transaction.pan = transacao.pan;
 			transaction.order = transacao.dadosPedido.ToOrder ();
@@ -50,5 +53,5 @@ namespace Cielo.Request.Element
 
 			return transaction;
 		}
-	}
+    }
 }

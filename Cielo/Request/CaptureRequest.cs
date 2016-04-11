@@ -27,7 +27,7 @@ namespace Cielo.Request
 		public static CaptureRequest create (Transaction transaction, int total)
 		{
 			var cancellationRequest = new CaptureRequest {
-				id = transaction.order.number,
+				id = Guid.NewGuid().ToString(),
 				versao = Cielo.VERSION,
 				tid = transaction.tid,
 				dadosEc = new DadosEcElement {

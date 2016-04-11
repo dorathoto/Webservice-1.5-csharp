@@ -27,7 +27,7 @@ namespace Cielo.Request
 		public static CancellationRequest create (Transaction transaction, int total)
 		{
 			var cancellationRequest = new CancellationRequest {
-				id = transaction.order.number,
+                id = Guid.NewGuid().ToString(),
 				versao = Cielo.VERSION,
 				tid = transaction.tid,
 				dadosEc = new DadosEcElement {
@@ -39,6 +39,24 @@ namespace Cielo.Request
 
 			return cancellationRequest;
 		}
+
+        public static CancellationRequest create(string tid, Merchant merchant, int total)
+        {
+            var cancellationRequest = new CancellationRequest
+            {
+                id = Guid.NewGuid().ToString(),
+                versao = Cielo.VERSION,
+                tid = tid,
+                dadosEc = new DadosEcElement
+                {
+                    numero = merchant.id,
+                    chave = merchant.key
+                },
+                valor = total
+            };
+
+            return cancellationRequest;
+        }
 	}
 }
 

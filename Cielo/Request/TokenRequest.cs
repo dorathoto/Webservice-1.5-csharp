@@ -20,7 +20,7 @@ namespace Cielo.Request
 		public static TokenRequest create (Transaction transaction)
 		{
 			var tokenRequest = new TokenRequest {
-				id = transaction.order.number,
+                id = Guid.NewGuid().ToString(),
 				versao = Cielo.VERSION,
 				dadosEc = new DadosEcElement {
 					numero = transaction.merchant.id,
@@ -35,6 +35,28 @@ namespace Cielo.Request
 
 			return tokenRequest;
 		}
+
+        public static TokenRequest create(Merchant merchant, Holder holder)
+        {
+            var tokenRequest = new TokenRequest
+            {
+                id = Guid.NewGuid().ToString(),
+                versao = Cielo.VERSION,
+                dadosEc = new DadosEcElement
+                {
+                    numero = merchant.id,
+                    chave = merchant.key
+                },
+                dadosPortador = new DadosPortadorElement
+                {
+                    numero = holder.number,
+                    validade = holder.expiration,
+                    nomePortador = holder.name
+                }
+            };
+
+            return tokenRequest;
+        }
 	}
 }
 

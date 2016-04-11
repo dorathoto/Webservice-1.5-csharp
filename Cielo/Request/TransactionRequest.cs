@@ -39,7 +39,7 @@ namespace Cielo.Request
 		public static TransactionRequest create (Transaction transaction)
 		{
 			var transactionRequest = new TransactionRequest {
-				id = transaction.order.number,
+                id = Guid.NewGuid().ToString(),
 				versao = Cielo.VERSION,
 				dadosEc = new DadosEcElement {
 					numero = transaction.merchant.id,

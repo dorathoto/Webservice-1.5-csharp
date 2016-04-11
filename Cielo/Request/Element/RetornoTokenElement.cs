@@ -42,5 +42,19 @@ namespace Cielo.Request.Element
 
 			return token;
 		}
+
+        public static Token unserialize(String response)
+        {
+            RetornoTokenElement tokenElement = new RetornoTokenElement();
+            tokenElement = tokenElement.unserializeElement(tokenElement, response);
+
+            Token token = new Token();
+
+            token.code = tokenElement.token.dadosToken.codigoToken;
+            token.status = tokenElement.token.dadosToken.status;
+            token.number = tokenElement.token.dadosToken.numeroTruncado;
+
+            return token;
+        }
 	}
 }
