@@ -170,5 +170,10 @@ namespace Cielo
 			this.authorize = authorize;
 			this.capture = capture;
 		}
+
+        public Transaction()
+        {
+            
+        }
 	}
 }

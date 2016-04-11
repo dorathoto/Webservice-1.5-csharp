@@ -16,7 +16,7 @@ namespace Cielo
 	/// criar as instâncias pré-configuradas com os parâmetros mínimos necessários
 	/// para a execução das operações.
 	/// </summary>
-	class Cielo
+	public class Cielo
 	{
 		/// <summary>
 		/// Versão interna do webservice
@@ -294,6 +294,18 @@ namespace Cielo
 			return TransacaoElement.unserialize (transaction, sendHttpRequest (serialize (request)));
 		}
 
+        /// <summary>
+        /// Envia uma requisição-cancelamento para o webservice Cielo para cancelar uma transação
+        /// </summary>
+        /// <returns>A transação com o respectivo status retornada pela Cielo</returns>
+        /// <param name="transaction">A transação que será cancelada</param>
+        /// <param name="total">Total do cancelamento</param>
+        public Transaction cancellationRequest(string tid, int total, Merchant merchant = null)
+        {
+            CancellationRequest request = CancellationRequest.create(tid,merchant??this.merchant,total);
+            return TransacaoElement.unserialize(null,sendHttpRequest(serialize(request)));
+        }
+
 		/// <summary>
 		/// Envia uma requisição-captura para o webservice Cielo para capturar uma transação
 		/// previamente autorizada
@@ -352,6 +364,17 @@ namespace Cielo
 			TokenRequest request = TokenRequest.create (transaction);
 			return RetornoTokenElement.unserialize (transaction, sendHttpRequest (serialize (request)));
 		}
+
+        /// <summary>
+        /// Envia uma requisição-token para gerar um token para um cartão de crédito.
+        /// </summary>
+        /// <returns>O Token retornado pela Cielo</returns>
+        /// <param name="transaction">A transação que contém os dados do portador</param>
+        public Token tokenRequest(Holder holder, Merchant merchant = null)
+        {
+            TokenRequest request = TokenRequest.create(merchant??this.merchant, holder);
+            return RetornoTokenElement.unserialize(sendHttpRequest(serialize(request)));
+        }
 
 		/// <summary>
 		/// Envia uma requisição-transacao com os dados especificados

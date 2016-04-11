@@ -20,7 +20,7 @@ namespace Cielo.Request
 		public static AuthorizationRequest create (Transaction transaction)
 		{
 			var authorizationRequest = new AuthorizationRequest {
-				id = transaction.order.number,
+				id = Guid.NewGuid().ToString(),
 				versao = Cielo.VERSION,
 				tid = transaction.tid,
 				dadosEc = new DadosEcElement {
