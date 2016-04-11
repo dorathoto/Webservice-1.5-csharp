@@ -19,7 +19,7 @@ namespace Cielo.Request.Element
 
 		public int lr { get; set; }
 
-		public int arp { get; set; }
+		public string arp { get; set; }
 
 		public int nsu { get; set; }
 
