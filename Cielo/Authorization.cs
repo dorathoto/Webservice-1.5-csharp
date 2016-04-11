@@ -35,7 +35,7 @@ namespace Cielo
 		/// <summary>
 		/// O código ARP da autorização
 		/// </summary>
-		public int arp { get; set; }
+		public string arp { get; set; }
 
 		/// <summary>
 		/// O código NSU da autorização
