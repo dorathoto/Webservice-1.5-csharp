@@ -36,54 +36,58 @@ namespace Cielo.Request
 		[XmlElementAttribute ("gerar-token")]
 		public String gerarToken { get; set; }
 
-		public static TransactionRequest create (Transaction transaction)
-		{
-			var transactionRequest = new TransactionRequest {
+        public static TransactionRequest create (Transaction transaction)
+        {
+            var transactionRequest = new TransactionRequest {
                 id = Guid.NewGuid().ToString(),
-				versao = Cielo.VERSION,
-				dadosEc = new DadosEcElement {
-					numero = transaction.merchant.id,
-					chave = transaction.merchant.key
-				},
-				dadosPortador = new DadosPortadorElement {
-					numero = transaction.holder.number,
-					validade = transaction.holder.expiration,
-					nomePortador = transaction.holder.name
-				},
-				dadosPedido = new DadosPedidoElement {
-					numero = transaction.order.number,
-					valor = transaction.order.total,
-					moeda = transaction.order.currency,
-					dataHora = transaction.order.dateTime,
-					descricao = transaction.order.description,
-					idioma = transaction.order.language,
-					taxaEmbarque = transaction.order.shipping,
-					softDescriptor = transaction.order.softDescriptor
-				},
-				formaPagamento = new FormaPagamentoElement {
-					bandeira = transaction.paymentMethod.issuer,
-					produto = transaction.paymentMethod.product,
-					parcelas = transaction.paymentMethod.installments
-				},
-				urlRetorno = transaction.returnURL,
-				autorizar = (int)transaction.authorize,
-				capturar = transaction.capture ? "true" : "false"
-			};
+                versao = Cielo.VERSION,
+                dadosEc = new DadosEcElement {
+                    numero = transaction.merchant.id,
+                    chave = transaction.merchant.key
+                },
+                dadosPortador = string.IsNullOrEmpty(transaction.holder.token) ?
+                    new DadosPortadorElement {
+                        numero = transaction.holder.number,
+                        validade = transaction.holder.expiration,
+                        nomePortador = transaction.holder.name
+                    } 
+                    : new DadosPortadorElement {
+                        token = transaction.holder.token
+                    },
+                dadosPedido = new DadosPedidoElement {
+                    numero = transaction.order.number,
+                    valor = transaction.order.total,
+                    moeda = transaction.order.currency,
+                    dataHora = transaction.order.dateTime,
+                    descricao = transaction.order.description,
+                    idioma = transaction.order.language,
+                    taxaEmbarque = transaction.order.shipping,
+                    softDescriptor = transaction.order.softDescriptor
+                },
+                formaPagamento = new FormaPagamentoElement {
+                    bandeira = transaction.paymentMethod.issuer,
+                    produto = transaction.paymentMethod.product,
+                    parcelas = transaction.paymentMethod.installments
+                },
+                urlRetorno = transaction.returnURL,
+                autorizar = (int)transaction.authorize,
+                capturar = transaction.capture ? "true" : "false"
+            };
 
-			if (transaction.freeField != null) {
-				transactionRequest.campoLivre = transaction.freeField;
-			}
+            if (transaction.freeField != null) {
+                transactionRequest.campoLivre = transaction.freeField;
+            }
 
-			if (transaction.bin != null) {
-				transactionRequest.bin = transaction.bin;
-			}
+            if (transaction.bin != null) {
+                transactionRequest.bin = transaction.bin;
+            }
 
-			if (transaction.generateToken) {
-				transactionRequest.gerarToken = "true";
-			}
+            if (transaction.generateToken) {
+                transactionRequest.gerarToken = "true";
+            }
 
-			return transactionRequest;
-		}
+            return transactionRequest;
+        }
 	}
 }
 

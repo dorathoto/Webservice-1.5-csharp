@@ -15,7 +15,7 @@ namespace Cielo
 			/// <summary>
 			/// O CVV não foi informado
 			/// </summary>
-			NOT_INFORMED = 1,
+			NOT_INFORMED = 0,
 
 			/// <summary>
 			/// O CVV foi informado
