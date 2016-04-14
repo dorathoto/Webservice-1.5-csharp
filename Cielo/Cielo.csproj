@@ -45,6 +45,7 @@
     <Compile Include="Merchant.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="PaymentMethod.cs" />
+    <Compile Include="Request\Element\TokenElement.cs" />
     <Compile Include="Transaction.cs" />
     <Compile Include="Token.cs" />
     <Compile Include="Authorization.cs" />
