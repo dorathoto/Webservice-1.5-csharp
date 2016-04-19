@@ -297,9 +297,11 @@ namespace Cielo
         /// <summary>
         /// Envia uma requisição-cancelamento para o webservice Cielo para cancelar uma transação
         /// </summary>
-        /// <returns>A transação com o respectivo status retornada pela Cielo</returns>
         /// <param name="transaction">A transação que será cancelada</param>
         /// <param name="total">Total do cancelamento</param>
+        /// <param name="tid">todo: describe tid parameter on cancellationRequest</param>
+        /// <param name="merchant">todo: describe merchant parameter on cancellationRequest</param>
+        /// <returns>A transação com o respectivo status retornada pela Cielo</returns>
         public Transaction cancellationRequest(string tid, int total, Merchant merchant = null)
         {
             CancellationRequest request = CancellationRequest.create(tid,merchant??this.merchant,total);
@@ -368,8 +370,10 @@ namespace Cielo
         /// <summary>
         /// Envia uma requisição-token para gerar um token para um cartão de crédito.
         /// </summary>
-        /// <returns>O Token retornado pela Cielo</returns>
         /// <param name="transaction">A transação que contém os dados do portador</param>
+        /// <param name="holder">todo: describe holder parameter on tokenRequest</param>
+        /// <param name="merchant">todo: describe merchant parameter on tokenRequest</param>
+        /// <returns>O Token retornado pela Cielo</returns>
         public Token tokenRequest(Holder holder, Merchant merchant = null)
         {
             TokenRequest request = TokenRequest.create(merchant??this.merchant, holder);
