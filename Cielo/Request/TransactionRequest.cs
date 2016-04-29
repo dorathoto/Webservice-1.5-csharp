@@ -49,7 +49,8 @@ namespace Cielo.Request
                     new DadosPortadorElement {
                         numero = transaction.holder.number,
                         validade = transaction.holder.expiration,
-                        nomePortador = transaction.holder.name
+                        nomePortador = transaction.holder.name,
+                        codigoSeguranca = transaction.holder.cvv
                     } 
                     : new DadosPortadorElement {
                         token = transaction.holder.token
