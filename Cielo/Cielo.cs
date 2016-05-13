@@ -411,5 +411,16 @@ namespace Cielo
 			TransactionRequest request = TransactionRequest.create (transaction);
 			return TransacaoElement.unserialize (transaction, sendHttpRequest (serialize (request)));
 		}
-	}
+
+        /// <summary>
+        /// Envia uma requisição de consulta
+        /// </summary>
+        /// <param name="tid">TID da operação</param>        
+        /// <returns>Uma instância de Transaction com a resposta da requisição</returns>
+        public Transaction consultationRequest(String tid)
+        {
+            ConsultationRequest request = ConsultationRequest.create(tid, merchant);
+            return TransacaoElement.unserialize(null, sendHttpRequest(serialize(request)));
+        }
+    }
 }
