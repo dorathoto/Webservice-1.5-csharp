@@ -45,12 +45,27 @@ try {
 		                          false
 	                          );
 
-	if (transaction.authorization != null && transaction.authorization.lr == 0) {
+	if (transaction.authorization != null && transaction.authorization.lr == "00") {
 		Console.Write ("Transação autorizada com sucesso. TID=");
 		Console.WriteLine (transaction.tid);
 	}
-} catch (Exception e) {
+} catch (CieloException e) {
 	Console.WriteLine ("Opz..");
+	Console.WriteLine (e.Code);
+	Console.WriteLine (e.Message);
+}
+```
+
+## Exemplo de consulta
+
+```csharp
+//...
+
+
+try {
+	transaction = cielo.consultationRequest ("1006993069000654F07A"); // tid da transação
+} catch (CieloException e) {
+	Console.WriteLine (e.Code);
 	Console.WriteLine (e.Message);
 }
 ```
@@ -63,8 +78,9 @@ try {
 
 try {
 	transaction = cielo.cancellationRequest (transaction);
-} catch (Exception e) {
-	// ...
+} catch (CieloException e) {
+	Console.WriteLine (e.Code);
+	Console.WriteLine (e.Message);
 }
 ```
 
@@ -76,8 +92,9 @@ try {
 
 try {
 	transaction = cielo.captureRequest (transaction);
-} catch (Exception e) {
-	// ...
+} catch (CieloException e) {
+	Console.WriteLine (e.Code);
+	Console.WriteLine (e.Message);
 }
 ```
 
@@ -89,7 +106,8 @@ try {
 
 try {
 	transaction = cielo.captureRequest (transaction, 10000);
-} catch (Exception e) {
-	// ...
+} catch (CieloException e) {
+	Console.WriteLine (e.Code);
+	Console.WriteLine (e.Message);
 }
 ```
