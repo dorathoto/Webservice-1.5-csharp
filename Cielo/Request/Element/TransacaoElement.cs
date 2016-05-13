@@ -60,6 +60,14 @@ namespace Cielo.Request.Element
                 transaction.token = transacao.token.ToToken();
             }
 
+            int status = 0;
+            if (int.TryParse(transacao.status, out status))
+            {
+                transaction.status = status;
+            }            
+
+            transaction.authenticationUrl = transacao.urlAutenticacao;
+
             return transaction;
         }
     }
