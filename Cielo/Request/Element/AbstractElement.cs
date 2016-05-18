@@ -27,8 +27,8 @@ namespace Cielo.Request.Element
 
 					ErroElement erro = (ErroElement)serializer.Deserialize (reader);
 
-					throw new Exception (erro.mensagem, e);
-				}
+					throw new CieloException(erro.mensagem, erro.codigo, e);
+                }
 			}
 
 			return element;

@@ -17,7 +17,7 @@ namespace Cielo.Request.Element
 
 		public int valor { get; set; }
 
-		public int lr { get; set; }
+		public string lr { get; set; }
 
 		public string arp { get; set; }
 

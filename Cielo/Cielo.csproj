@@ -39,12 +39,14 @@
     <Reference Include="System.Net" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CieloException.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Cielo.cs" />
     <Compile Include="Holder.cs" />
     <Compile Include="Merchant.cs" />
     <Compile Include="Order.cs" />
     <Compile Include="PaymentMethod.cs" />
+    <Compile Include="Request\ConsultationRequest.cs" />
     <Compile Include="Request\Element\TokenElement.cs" />
     <Compile Include="Transaction.cs" />
     <Compile Include="Token.cs" />

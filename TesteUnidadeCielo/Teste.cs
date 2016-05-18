@@ -31,7 +31,7 @@ namespace TesteUnidadeCielo
 
             var codigoLr = transaction.authorization.lr;
 
-            Assert.AreEqual(codigoLr, 0);
+            Assert.AreEqual(codigoLr, "00");
         }
 
         [TestMethod]

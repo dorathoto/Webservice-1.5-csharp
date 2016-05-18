@@ -30,7 +30,7 @@ namespace Cielo
 		/// <summary>
 		/// O código LR da autorização
 		/// </summary>
-		public int lr { get; set; }
+		public string lr { get; set; }
 
 		/// <summary>
 		/// O código ARP da autorização
