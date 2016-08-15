@@ -111,3 +111,10 @@ try {
 	Console.WriteLine (e.Message);
 }
 ```
+## Captura total de uma transação by Tid
+
+```csharp
+//...
+var tid = "123412341234AB";
+var transacao = cielo.cancellationRequest(tid, 0);
+```
